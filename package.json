@@ -22,6 +22,7 @@
     "dotenv": "^6.2.0",
     "eslint": "^5.14.1",
     "gdax": "^0.8.0",
+    "mongoose": "^5.4.16",
     "superagent": "^4.1.0"
   },
   "devDependencies": {
