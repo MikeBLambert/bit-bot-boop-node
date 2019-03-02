@@ -1,0 +1,30 @@
+{
+  "name": "bit-bot-boop-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "start:watch": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeBLambert/bit-bot-boop-node.git"
+  },
+  "author": "Mike Lambert <mlamb128@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MikeBLambert/bit-bot-boop-node/issues"
+  },
+  "homepage": "https://github.com/MikeBLambert/bit-bot-boop-node#readme",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "eslint": "^5.14.1",
+    "gdax": "^0.8.0",
+    "superagent": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
