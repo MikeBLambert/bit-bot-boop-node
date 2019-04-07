@@ -1,58 +1,46 @@
 require('dotenv').config();
 const connect = require('./lib/utils/connect');
 const Exchange = require('./lib/models/Exchange');
-connect();
+const GDAX = require('gdax');
 
+// connect();
 
-const testDbCall = () => Exchange.create({
-    name: 'Coinbase',
-    fees: {
-        txCost: 15,
-        transferCost: 5
-    }
-});
+const authenticatedClient = new GDAX.AuthenticatedClient(
+  process.env.GDAX_API_KEY,
+  process.env.GDAX_SECRET,
+  process.env.GDAX_PASSPHRASE,
+  'https://api.pro.coinbase.com'
+);
 
-testDbCall();
+const uglyGetPrices = () => {
+  return new Promise((resolve, reject) => {
+    authenticatedClient.getProductTicker('ETH-USD', (error, response, data) => {
+      reject(error);
+      resolve(data);
+    });
+  });
+};
+console.log(uglyGetPrices());
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const getBuyPrices = () => {
-//     return new Promise(function(resolve, reject) {
-//         setTimeout(() => {
-//             const str = 'first';
-//             resolve(str);
-//         }, 3000);
-//     });
+// const getPrices = () => {
+//   return new Promise((resolve, reject) => {
+//     authenticatedClient.getProductTicker(
+//       'ETH-USD',
+//       unwrapResponse(resolve, reject)
+//     );
+//   });
 // };
+// console.log('get prices:', getPrices);
 
-// const getSellPrices = () => {
-//     return new Promise(function(resolve, reject) {
-//         setTimeout(() => {
-//             const str2 = 'second';
-//             resolve(str2);
-//         }, 1000);
-//     });
+const comparePrices = async () => {
+  const cb = await uglyGetPrices();
+  console.log('our cb: ', cb);
+};
+// const unwrapResponse = (resolve, reject) => {
+//   return (err, response, data) => {
+//     err || !response
+//       ? reject(err || new Error('Nothing happened!'))
+//       : resolve(data);
+//   };
 // };
-
-// getBuyPrices()
-//     .then(res => {
-//         console.log(res);
-//     })
-//     .then(() => getSellPrices())
-//     .then(res => console.log(res));
+comparePrices();
