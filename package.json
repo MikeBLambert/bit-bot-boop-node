@@ -19,9 +19,12 @@
   },
   "homepage": "https://github.com/MikeBLambert/bit-bot-boop-node#readme",
   "dependencies": {
+    "axios": "^0.18.0",
+    "binance-api-node": "^0.8.20",
     "dotenv": "^6.2.0",
     "eslint": "^5.14.1",
     "gdax": "^0.8.0",
+    "kraken-api": "^1.0.0",
     "mongoose": "^5.4.16",
     "superagent": "^4.1.0"
   },
